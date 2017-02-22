@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>pdfDatatable</title>
+
+    <!-- Bootstrap -->
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Datatables -->
+    <link href="../lib/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+         <div class="col-md-3 left_col" id="left_col_div">
+        
+        </div>
+
+        <!-- top navigation -->
+         <div class="top_nav" id="top_nav_div">
+				
+        </div>
+        <!-- /top navigation -->
+ <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                  <div class="col-md-6 col-sm-6 col-xs-6"> <h2 th:text="${title}">pdf Corner</h2></div>
+                   <div class="col-md-6 col-sm-6 col-xs-6" > <button type="button" id="addBtn" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-plus"></span>  Add Form</button></div>
+                  
+                    <div class="clearfix"></div>
+                  </div>
+                 
+	                  <div class="col-md-4 col-sm-4 col-xs-6" style="float: right; " >
+	                           <select th:remove="all-but-first" class="form-control" id="groupId">
+				                 <option th:each="group : ${groupList}"
+				                         th:value="${group.groupId}" th:text="${group.groupName}">- Please select -</option>
+				                 <option value="">Special offers</option>
+				                 <option>Pacific</option>
+				                 <option>Preferred Choice</option>
+				                 <option>International Term Assurance</option>
+				                 <option>International Wealth Account</option>
+				                 <option>Vista</option>
+				                 <option>Futura</option>
+				                 <option>Futura III</option>
+				                 <option>Business protection</option>
+				                 <option>Investment pdf</option>
+				                 <option>Anti money laundering regulations</option>
+				                 <option>Disclaimer</option>
+				                 <option>Generic forms</option>
+				                 <option>Miscellaneous</option>
+				             </select>
+		              </div>
+	              
+                  <div class="x_content">
+                   
+                    <table id="pdfDatatable" class="table table-striped table-bordered bulk_action">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th> no.</th>
+                          <th>Group</th>
+                          <th>Name</th>
+                          <th>Publish Date</th>
+                          <th>Expiry Date</th>
+                          <th>Status</th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody th:remove="all-but-first">
+
+                        <tr th:each="pdf:${pdfList}">
+                          <td th:text="${pdf.pdfId}">1</td>
+                          <td th:text="${pdf.pdfNo}">Tiger Nixon</td>
+                          <td th:text="${pdf.group.groupName}">Pacific</td>
+                          <td th:text="${pdf.pdfName}">Tiger Nixon</td>
+                          <td th:text="${#dates.format(pdf.publishDate, 'dd/MM/yyyy')}">2011/04/25</td>
+                          <td th:text="${#dates.format(pdf.expiryDate, 'dd/MM/yyyy')}">2011/04/25</td>
+                          <td th:text="${pdf.Status.statusName}">Draf</td>
+                          <td> <a  th:href="@{../../pdfedit/{pdfId}(pdfId=${pdf.pdfId})}" href="editpdf.html">edit</a> </td>
+                           <td> <a  th:href="@{../../pdfshow/{pdfId}(pdfId=${pdf.pdfId})}" href="showpdf.html" >show</a> </td>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Garrett Winters</td>
+                          <td>Pacific</td>
+                          <td>Accountant</td>
+                          <td>2011/07/25</td>
+                          <td>2011/07/25</td>
+                          <td>published</td>
+                           <td> <a href="editpdf.html">edit</a> </td>
+                           <td> <a href="showpdf.html" >show</a> </td>
+                        </tr>
+                        <tr>
+                           <td>1</td>
+                          <td>Ashton Cox</td>
+                           <td>Pacific</td>
+                          <td>Junior Technical Author</td>
+                          <td>2011/07/25</td>
+                          <td>2009/01/12</td>
+                          <td>delete</td>
+                            <td> <a href="editpdf.html">edit</a> </td>
+                           <td> <a href="showpdf.html" >show</a> </td>
+                        </tr>
+                        <tr>
+                           <td>1</td>
+                          <td>Cedric Kelly</td>
+                           <td>Vista</td>
+                          <td>Senior Javascript Developer</td>
+                          <td>2011/07/25</td>
+                          <td>2012/03/29</td>
+                          <td>published</td>
+                           <td> <a href="editpdf.html">edit</a> </td>
+                           <td> <a href="showpdf.html" >show</a> </td>
+                        </tr>
+               
+                     
+                 
+                  
+                       
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+                   </div>
+            </div>
+        </div>
+       <!-- footer content -->
+        <footer>
+          
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+    <!-- jQuery -->
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../lib/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../lib/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../lib/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../lib/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../lib/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../lib/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <script src="../js/pdfList.js"></script>
+        <script src="../js/main.js"></script>  
+  </body>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+ <link rel="stylesheet" href="css/login.css">
+ <script src="lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function(){ 
+	var url = window.location.href;
+	  if(url.indexOf("error")>0){
+		  $("#login-error").html("Login Error");
+	  }
+});
+  
+</script>
+</head>
+<body style="background-color:#F0F4F5">
+	<form class="login-panel" style="margin:auto; margin-top:25vh;" method="post" autocomplete="off"><!-- action="../j_spring_security_check" -->		
+	
+            <input type="text" id="loginId" placeholder="Username" name="j_username" class="">
+            <span>Please enter your username</span>
+            <input type="password" id="password" placeholder="Password" name="j_password" class="">
+            <span>Please enter your password</span>
+            
+            <button type="submit" name="login" id="login">Login</button>
+	</form>
+</body>
+  <script>
+            var a=document.getElementById('loginId');
+            var p=document.getElementById('password');
+            var l=document.getElementById('login');
+            a.addEventListener('keyup',function(){
+            	if((a.value!=null&&a.value!='')&&(p.value!=null&&p.value!='')){
+            		l.disabled=false;
+            	}else{
+            		l.disabled=true;
+            	}
+            });
+            p.addEventListener('keyup',function(){
+            	if((a.value!=null&&a.value!='')&&(p.value!=null&&p.value!='')){
+            		l.disabled=false;
+            	}else{
+            		l.disabled=true;
+            	}
+            });
+            
+            $("#login").click( function() {
+            	 window.location.href="pdf/list/type1"; 
+    		 });
+  </script>
+</html>

@@ -1,0 +1,12 @@
+.login-panel{   width: 240px; padding: 20px; background-color: white; padding-bottom: 10px;}
+.login-panel>img{ width: 70%; margin:auto; display: block; }
+.login-panel>input{margin-top:11px; padding:10px; width: 100%; display: block; box-sizing: border-box;}
+.login-panel>input:focus{outline:0px; border: 2px solid #4066B3;}
+.login-panel>input+span{display: none;}
+.login-panel>button{margin-top:21px;margin-bottom:11px; padding:10px; color: white; background-color: #4066B3; display: block;
+                    border:2px solid #4066B3; width: 100%; }
+.login-panel>button:disabled{background-color: #CCC; color: #999; border: 2px solid #CCC;   }
+.login-panel>a{color: #4066B3; text-decoration: none;}
+.login-panel>a>div{padding: 10px; text-align: center; font-size: 12px; margin-top: 5px;}
+.login-panel>input.has-error{ border: 2px solid #4066B3; }
+.login-panel>input.has-error+span{font-size: 12px; color: #4066B3; margin-top:5px; display: block;}

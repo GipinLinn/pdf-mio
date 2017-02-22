@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>re-Order Group</title>
+
+    <!-- Bootstrap -->
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+    <!-- Datatables -->
+    <link href="../lib/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../lib/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+     <link href="../lib/datatables.net-rowreorder-dt/css/rowReorder.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+         <div class="col-md-3 left_col" id="left_col_div"> </div>
+
+        <!-- top navigation -->
+         <div class="top_nav" id="top_nav_div"></div>
+        <!-- /top navigation -->
+ <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                  <div class="col-md-6 col-sm-6 col-xs-6"> <h2>Literature Corner - Re-order group</h2></div>
+                    <div class="col-md-6 col-sm-6 col-xs-6" > <button type="button" id="saveBtn" class="btn btn-primary" style="float: right;">  Save</button></div>
+                    <div class="clearfix"></div>
+                  </div>
+                 
+                  <div class="x_content">
+                    <table id="reOrderGroupDatatable"  class="table table-striped table-bordered bulk_action"  cellspacing="0" width="100%">
+				        <thead>
+				            <tr>
+				              <th>Seq.</th>
+	                          <th>ID</th>
+	                          <th>Name</th>
+	                          <th>Publish Date</th>
+	                          <th>Expiry Date</th>
+	                          <th>Status</th>
+				            </tr>
+				        </thead>
+				
+				        <tbody  th:remove="all-but-first">
+				              <tr th:each="group:${groupList}">
+				                          <td th:text="${group.sequence}"></td>
+				                           <td th:text="${group.groupId}"></td>
+				                          <td th:text="${group.groupName}"></td>
+				                          <td th:text="${#dates.format(group.publishDate, 'dd/MM/yyyy')}"></td>
+				                          <td th:text="${#dates.format(group.expiryDate, 'dd/MM/yyyy')}"></td>
+				                          <td th:text="${group.status.statusName}"></td>
+				                        </tr>
+				            <tr>
+				                <td>2</td>
+				                <td>2</td>
+				                <td>System Architect</td>
+				                <td>2011/04/25</td>
+				                <td>2011/04/25</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>22</td>
+				                <td>22</td>
+				                <td>Accountant</td>
+				                <td>2011/04/25</td>
+				                <td>2011/07/25</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>6</td>
+				                <td>6</td>
+				                <td>Junior Technical Author</td>
+				                <td>2011/04/25</td>
+				                <td>2009/01/12</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>41</td>
+				                <td>41</td>
+				                <td>Senior Javascript Developer</td>
+				                <td>2011/04/25</td>
+				                <td>2012/03/29</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>55</td>
+				                <td>55</td>
+				                <td>Accountant</td>
+				                <td>2011/04/25</td>
+				                <td>2008/11/28</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>21</td>
+				                <td>21</td>
+				                <td>Integration Specialist</td>
+				                <td>2011/04/25</td>
+				                <td>2012/12/02</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>46</td>
+				                <td>46</td>
+				                <td>Sales Assistant</td>
+				                <td>2011/04/25</td>
+				                <td>2012/08/06</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>50</td>
+				                <td>50</td>
+				                <td>Integration Specialist</td>
+				                <td>2011/04/25</td>
+				                <td>2010/10/14</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>26</td>
+				                <td>26</td>
+				                <td>Javascript Developer</td>
+				                <td>2011/04/25</td>
+				                <td>2009/09/15</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>18</td>
+				                <td>18</td>
+				                <td>Software Engineer</td>
+				                <td>2011/04/25</td>
+				                <td>2008/12/13</td>
+				                <td>$103,600</td>
+				            </tr>
+				            <tr>
+				                <td>13</td>
+				                <td>13</td>
+				                <td>Office Manager</td>
+				                <td>2011/04/25</td>
+				                <td>2008/12/19</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>23</td>
+				                <td>23</td>
+				                <td>Support Lead</td>
+				                <td>2011/04/25</td>
+				                <td>2013/03/03</td>
+				                <td>Draf</td>
+				            </tr>
+				            <tr>
+				                <td>14</td>
+				                <td>14</td>
+				                <td>Regional Director</td>
+				                <td>2011/04/25</td>
+				                <td>2008/10/16</td>
+				                <td>$470,600</td>
+				            </tr>
+				            <tr>
+				                <td>12</td>
+				                <td>12</td>
+				                <td>Senior Marketing Designer</td>
+				                <td>2011/04/25</td>
+				                <td>2012/12/18</td>
+				                <td>$313,500</td>
+				            </tr>
+				           
+				         
+				
+				        </tbody>
+				    </table>
+                  </div>
+                </div>
+              </div>
+                   </div>
+            </div>
+        </div>
+       <!-- footer content -->
+        <footer>
+          
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+    <!-- jQuery -->
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../lib/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../lib/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../lib/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../lib/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../lib/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../lib/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../lib/datatables.net-scroller/js/datatables.scroller.min.js"></script>
+    <script src="../lib/datatables.net-rowreorder/js/dataTables.rowReorder.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+
+    <script src="../js/reOrderGroup.js"></script>
+    <script src="../js/main.js"></script>  
+  </body>

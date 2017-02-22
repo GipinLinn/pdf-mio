@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<!-- <Property name="backupFilePattern">log/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz</Property> -->
+		<Property name="logRoot">D:/pdf</Property>
+	</Properties>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-5p|%d{ABSOLUTE}| %c{1}:%L - %M - %m%n" />
+		</Console>
+		<!-- 
+		<RollingFile name="RollingFile" append="true" fileName="${catalina.base}/logs/eprecious.log"
+					filePattern="${backupFilePattern}">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n" />
+			<Policies> 
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" /> 
+		</RollingFile> -->
+		<!-- =========== controller config =========== -->
+		<RollingFile name="controllerFile" append="true" 
+					fileName="${logRoot}/controller.log"
+					filePattern="${logRoot}/controller-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%-5p|%d{ABSOLUTE}| %c{1}:%L - %M - %m%n" />
+			<Policies> 
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="50MB" />
+			</Policies>
+		</RollingFile>
+		
+		<!-- =========== DAO config =========== -->
+		<RollingFile name="daoFile" append="true" 
+					fileName="${logRoot}/dao.log"
+					filePattern="${logRoot}/dao-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%-5p|%d{ABSOLUTE}| %c{1}:%L - %M - %m%n" />
+			<Policies> 
+			    <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="50MB" />
+			</Policies>
+		</RollingFile>
+		
+		<!-- =========== service config =========== -->
+		<RollingFile name="serviceFile" append="true" 
+					fileName="${logRoot}/service.log"
+					filePattern="${logRoot}/service-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%-5p|%d{ABSOLUTE}| %c{1}:%L - %M - %m%n" />
+			<Policies> 
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="50MB" />
+			</Policies>
+		</RollingFile>
+		
+		<!-- =========== util config =========== -->
+		<RollingFile name="utilFile" append="true" 
+					fileName="${logRoot}/util.log"
+					filePattern="${logRoot}/util-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%-5p|%d{ABSOLUTE}| %c{1}:%L - %M - %m%n" />
+			<Policies> 
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+				<SizeBasedTriggeringPolicy size="50MB" />
+			</Policies>
+		</RollingFile>
+	
+
+		
+	</Appenders>
+	<Loggers>
+
+		<logger name="com.mio.pdf.web" level="info">
+			<AppenderRef ref="controllerFile" />
+		</logger>
+		<logger name="com.mio.pdf.service" level="info">
+			<AppenderRef ref="serviceFile" />
+		</logger>
+		<logger name="com.mio.pdf.util" level="info">
+			<AppenderRef ref="utilFile" />
+		</logger>
+
+		<Root level="info">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

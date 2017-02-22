@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>edit Group </title>
+
+    <!-- Bootstrap -->
+    <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col" id="left_col_div"> </div>
+
+        <!-- top navigation -->
+        <div class="top_nav" id="top_nav_div"></div>
+        <!-- /top navigation -->
+   <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                     <h2 th:text="${title}">Literature Corner -  Edit group</h2>
+               
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="groupform"  data-parsley-validate  class="form-horizontal form-label-left" method="post" th:object="${group}">
+  					   <input type="hidden" id="group_type" name="type" th:value="${group.type}">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="literature-id">ID  </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="group-ids" name="groupIds" disabled="disabled" th:value="*{groupId}" class="form-control col-md-7 col-xs-12">
+                           <input type="hidden" id="group_id" name="groupId" th:value="*{groupId}">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="msp-no"><span class="required" style="color: red">*</span>Name</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="groupName" name="groupName" required="required" th:field="*{groupName}"  class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                   
+                     
+                      <div class="form-group">
+                         <label class="control-label col-md-3 col-sm-3 col-xs-12"><span class="required" style="color: red">*</span>Publish date</label>
+                         <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="input-group date form_date " >
+			                    <input id="publish_date" name="publishDate" th:field="*{publishDate}" class="form-control" type="text" value="" readonly  required="required">
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			                </div>
+			              </div>
+                       </div>
+                
+                      <div class="form-group">
+                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Expiry date</label>
+                         <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="input-group date form_date ">
+			                    <input id="expiry_date" name="expiryDate" th:field="*{expiryDate}" class="form-control"  type="text" value="" readonly>
+			                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			                </div>
+			                <span style="color: #777;">Please leave blank if no expiry date</span>
+			              </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                     <div th:each="statu : ${status}" class=" col-md-3 col-sm-3 col-xs-12 ">
+		                       <input type="radio" class="flat " name="status.statusId" th:value="${statu.statusId}"  th:field="*{status.statusId}" /> 
+		                       <label  th:text="${statu.statusName}">Draft</label>
+		                      
+			             </div>
+			             <div th:remove="all" class="radio">
+			                 <div  class="col-md-3 col-sm-3 col-xs-12"><input type="radio" class="flat" name="status.statusId" id="genderF" value="F" />Publish</div>
+	                        <div  class="col-md-3 col-sm-3 col-xs-12"><input type="radio" class="flat" name="status.statusId" id="genderF" value="F" />Delete</div>
+			             </div>
+                         <div class="col-md-10 col-sm-10 col-xs-12"><span id="status_name"></span></div>
+	                     <div class="col-md-12 col-sm-12 col-xs-12" style="margin: 0px; padding: 0px;"> <span id="status_err" style="color: red;" ></span></div>
+                        </div>
+                      </div>
+                     <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="literature-id">Last created by   </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="create-by" disabled="disabled" class="form-control col-md-7 col-xs-12" th:field="*{lastCreatedBy}">
+                        </div>
+                      </div>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="literature-id">Last updated on   </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="updated-on" disabled="disabled" class="form-control col-md-7 col-xs-12" th:field="*{lastModifiedDate}">
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                           <div  class="col-md-5 col-sm-3 col-xs-6"><button type="button" id="cancelBtn" class="btn btn-primary">Cancel</button></div>
+                          <div  class="col-md-5 col-sm-3 col-xs-6"><button type="button" id="submitBtn" class="btn btn-primary">Submit</button></div>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+     <!-- footer content -->
+        <footer>
+          
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+   
+    <!-- jQuery -->
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Parsley -->
+    <script src="../lib/parsleyjs/dist/parsley.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+    <script src="../js/createGroup.js"></script>
+    <script src="../js/datepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="../js/main.js"></script>  
+  </body>
